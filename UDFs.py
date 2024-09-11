@@ -97,7 +97,7 @@ def clean_encoding(value: Union[str, None]) -> Union[str, None]:
 
 
 @sf_udf
-def parse_full_name(full_name: Union[str, None], index: str) -> Union[str, None]:
+def parse_full_name(full_name: Union[str, None], index: int) -> Union[str, None]:
     """
     Parses a full name and returns a specific part based on the given index.
 
@@ -108,8 +108,6 @@ def parse_full_name(full_name: Union[str, None], index: str) -> Union[str, None]
     Returns:
     str or None: The requested part of the name, or None if input is null or index is out of range.
     """
-    index = int(index)
-
     # Validating the input name
     if isnull(full_name):
         return None
