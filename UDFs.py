@@ -2,6 +2,11 @@
 Actual Implementations of Snowflake UDFs are stored here
 Import required functions from utils.py
 '''
+import sys
+import os
+
+# Assuming the 'libs' folder is inside the zip, add it to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), 'libs'))
 
 from utils import *
 
@@ -92,7 +97,7 @@ def clean_encoding(value: Union[str, None]) -> Union[str, None]:
 
 
 @sf_udf
-def parse_full_name(full_name: Union[str, None], index: int) -> Union[str, None]:
+def parse_full_name(full_name: Union[str, None], index: str) -> Union[str, None]:
     """
     Parses a full name and returns a specific part based on the given index.
 
@@ -103,6 +108,8 @@ def parse_full_name(full_name: Union[str, None], index: int) -> Union[str, None]
     Returns:
     str or None: The requested part of the name, or None if input is null or index is out of range.
     """
+    index = int(index)
+
     # Validating the input name
     if isnull(full_name):
         return None
@@ -200,3 +207,9 @@ def parse_linkedin_slug(value, other: bool) -> str:
         return cleaned_url.to_uri().to_text(with_password=True)
     except UnicodeDecodeError:
         return None
+    
+@sf_udf
+def clean_encoding(value):
+    if not isnull(value):
+        return fix_encoding(value)
+    return None
