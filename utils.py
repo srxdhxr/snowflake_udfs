@@ -1,6 +1,11 @@
 '''
 All Auxillary functions stored here to implement Snowflake UDFs
 '''
+import sys
+import os
+
+# Assuming the 'libs' folder is inside the zip, add it to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), 'libs'))
 
 import re
 from ftfy import fix_encoding
