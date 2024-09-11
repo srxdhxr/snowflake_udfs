@@ -21,7 +21,7 @@ source $STAGING_DIR/venv/bin/activate
 pip install -r $REQUIREMENTS_FILE -t $STAGING_DIR/libs
 
 # Copy the code files into the staging directory
-cp utils.py udfs.py $STAGING_DIR/
+cp utils.py UDFs.py $STAGING_DIR/
 
 # Zip everything (code and dependencies)
 cd $STAGING_DIR
