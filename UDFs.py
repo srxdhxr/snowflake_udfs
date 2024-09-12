@@ -183,7 +183,7 @@ def clean_company(value: Union[str, None]) -> Union[str, None]:
 
 
 @sf_udf
-def parse_linkedin_slug(value, other: bool) -> str:
+def parse_linkedin_slug(value, other) -> str:
     """
     Parses a LinkedIn company slug or URL.
     """
